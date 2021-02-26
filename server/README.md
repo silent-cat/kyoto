@@ -2,6 +2,7 @@
 
 ## 目录结构
 
+```
 server
 ├── admin //打包好的前端代码
 │ ├── css
@@ -37,6 +38,7 @@ server
 │ └── admin
 │ └── index.js
 └── uploads
+```
 
 ## 运行步骤
 
