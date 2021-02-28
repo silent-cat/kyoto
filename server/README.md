@@ -5,19 +5,11 @@
 ```
 server
 ├── admin //打包好的前端代码
-│ ├── css
-│ │ ├── app.d4b549cd.css
-│ │ └── chunk-vendors.2ac5db4b.css
+│ ├── css 
 │ ├── favicon.ico
-│ ├── fonts
-│ │ ├── element-icons.535877f5.woff
-│ │ └── element-icons.732389de.ttf
+│ ├── fonts 
 │ ├── index.html
 │ └── js
-│ ├── app.af5e1688.js
-│ ├── app.af5e1688.js.map
-│ ├── chunk-vendors.8b04608c.js
-│ └── chunk-vendors.8b04608c.js.map
 ├── index.js //入口文件
 ├── middleware //专用中间件
 │ ├── auth.js //登录校验
@@ -36,7 +28,6 @@ server
 ├── README.md
 ├── routes
 │ └── admin
-│ └── index.js
 └── uploads
 ```
 
