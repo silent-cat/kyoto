@@ -39,7 +39,7 @@ admin
 │       ├── ItemList.vue
 │       ├── Login.vue
 │       └── Main.vue
-├── tree.md
+├── README.md
 └── vue.config.js
 ```
 
