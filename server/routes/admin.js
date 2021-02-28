@@ -69,7 +69,7 @@ module.exports = (app) => {
   // 导入multer,建立中间件
   const multer = require("multer");
   // 使用绝对地址
-  const upload = multer({ dest: __dirname + "/../../uploads" });
+  const upload = multer({ dest: __dirname + "/../uploads" });
   // 将中间件加入路由，single代表单次上传,file传入子路由
   app.post(
     "/admin/api/upload",
