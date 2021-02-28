@@ -57,7 +57,7 @@ module.exports = (app) => {
   });
   app.use(
     // 1设定路由是什么
-    "/admin/api/rest/:resource",
+    "/api/rest/:resource",
     // 2判断用户是否存在
     authMiddleware(),
     // 3确定模型是什么
@@ -72,7 +72,7 @@ module.exports = (app) => {
   const upload = multer({ dest: __dirname + "/../uploads" });
   // 将中间件加入路由，single代表单次上传,file传入子路由
   app.post(
-    "/admin/api/upload",
+    "/api/upload",
     authMiddleware(),
     // 接收单个文件从的上传
     upload.single("file"),
@@ -85,7 +85,7 @@ module.exports = (app) => {
   );
 
   // 登录
-  app.post("/admin/api/login", async (req, res) => {
+  app.post("/api/login", async (req, res) => {
     // res.send("111");
     // req.body是客户端提交的数据
     const { username, password } = req.body;
