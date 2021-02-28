@@ -19,6 +19,8 @@ npm run serve
 
 ### 本地预览地址
 
+```
 http://localhost:3000/admin/#/login
+```
 
 
