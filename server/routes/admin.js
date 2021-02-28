@@ -2,16 +2,16 @@
 module.exports = (app) => {
   const express = require("express");
   const jwt = require("jsonwebtoken");
-  const AdminUser = require("../../models/AdminUser");
+  const AdminUser = require("../models/AdminUser");
   const assert = require("http-assert");
   // experss的子路由
   const router = express.Router({
     mergeParams: true,
   });
   // 登录校验中间件的引用
-  const authMiddleware = require("../../middleware/auth");
+  const authMiddleware = require("../middleware/auth");
   // 资源(模型)中间件
-  const resourceMiddleware = require("../../middleware/resource");
+  const resourceMiddleware = require("../middleware/resource");
   /* admin的所有接口 */
   // const Category = require("../../models/Category");
   // 创建资源

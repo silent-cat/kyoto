@@ -13,8 +13,8 @@
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">式神</template>
-            <el-menu-item index="/characters/create">新建英雄</el-menu-item>
-            <el-menu-item index="/characters/list">英雄列表</el-menu-item>
+            <el-menu-item index="/characters/create">新建式神</el-menu-item>
+            <el-menu-item index="/characters/list">式神列表</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">文章</template>
@@ -82,16 +82,16 @@ export default {
   data() {
     return {
       // username: ''
-    }
+    };
   },
   methods: {
     // 用户退出
     logout() {
-      window.localStorage.clear()
-      this.$router.push('/login')
-    }
-  }
-}
+      window.localStorage.clear();
+      this.$router.push("/login");
+    },
+  },
+};
 </script>
 <style>
 .el-header {
@@ -104,5 +104,3 @@ export default {
   color: #333;
 }
 </style>
-
-

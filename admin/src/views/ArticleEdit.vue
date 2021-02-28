@@ -82,10 +82,8 @@ export default {
     },
     async fetchCategories() {
       const res = await this.$http.get(`rest/categories`);
-      console.log(res.data)
-      this.categories = res.data.filter(
-        (v) => !v.parent &&v.name!='英雄'
-      );
+      console.log(res.data);
+      this.categories = res.data.filter((v) => v.parent && v.parent.name === "文章");
     },
     afterUpload(res) {
       // res 是 element 的on-success附带参数

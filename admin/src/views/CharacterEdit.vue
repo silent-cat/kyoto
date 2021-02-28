@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ id ? "编辑" : "新建" }}英雄</h1>
+    <h1>{{ id ? "编辑" : "新建" }}式神</h1>
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-tabs type="border-card">
         <!-- 概览信息 -->
@@ -30,7 +30,7 @@
               :action="uploadUrl"
               :headers="getAuthHeaders()"
               :show-file-list="false"
-              :on-success="res => $set(model, 'banner', res.url)"
+              :on-success="(res) => $set(model, 'banner', res.url)"
             >
               <img v-if="model.banner" :src="model.banner" class="avatar" />
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -49,25 +49,55 @@
             </el-select>
           </el-form-item>
           <el-form-item label="难度">
-            <el-rate style="margin-top:0.6rem;" :max="9" show-score v-model="model.scores.difficult"></el-rate>
+            <el-rate
+              style="margin-top:0.6rem;"
+              :max="9"
+              show-score
+              v-model="model.scores.difficult"
+            ></el-rate>
           </el-form-item>
           <el-form-item label="技能">
-            <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.skills"></el-rate>
+            <el-rate
+              style="margin-top:0.6rem"
+              :max="9"
+              show-score
+              v-model="model.scores.skills"
+            ></el-rate>
           </el-form-item>
           <el-form-item label="攻击">
-            <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.attack"></el-rate>
+            <el-rate
+              style="margin-top:0.6rem"
+              :max="9"
+              show-score
+              v-model="model.scores.attack"
+            ></el-rate>
           </el-form-item>
           <el-form-item label="生存">
-            <el-rate style="margin-top:0.6rem" :max="9" show-score v-model="model.scores.survive"></el-rate>
+            <el-rate
+              style="margin-top:0.6rem"
+              :max="9"
+              show-score
+              v-model="model.scores.survive"
+            ></el-rate>
           </el-form-item>
           <el-form-item label="顺风出装">
             <el-select v-model="model.items1" multiple>
-              <el-option v-for="item of items" :key="item._id" :label="item.name" :value="item._id"></el-option>
+              <el-option
+                v-for="item of items"
+                :key="item._id"
+                :label="item.name"
+                :value="item._id"
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="逆风出装">
             <el-select v-model="model.items2" multiple>
-              <el-option v-for="item of items" :key="item._id" :label="item.name" :value="item._id"></el-option>
+              <el-option
+                v-for="item of items"
+                :key="item._id"
+                :label="item.name"
+                :value="item._id"
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="使用技巧">
@@ -112,7 +142,12 @@
                 <el-input type="textarea" v-model="item.description"></el-input>
               </el-form-item>
               <el-form-item>
-                <el-button size="small" type="danger" @click="model.skills.splice(i, 1)">删除</el-button>
+                <el-button
+                  size="small"
+                  type="danger"
+                  @click="model.skills.splice(i, 1)"
+                  >删除</el-button
+                >
               </el-form-item>
             </el-col>
           </el-row>
@@ -120,11 +155,11 @@
 
         <el-tab-pane label="最佳搭档" name="partners">
           <el-button size="small" @click="model.partners.unshift({})">
-            <i class="el-icon-plus"></i> 添加英雄
+            <i class="el-icon-plus"></i> 添加式神
           </el-button>
           <el-row type="flex" style="flex-wrap: wrap">
             <el-col :md="12" v-for="(item, i) in model.partners" :key="i">
-              <el-form-item label="英雄">
+              <el-form-item label="式神">
                 <el-select filterable v-model="item.character">
                   <el-option
                     v-for="character in characters"
@@ -138,7 +173,12 @@
                 <el-input v-model="item.description" type="textarea"></el-input>
               </el-form-item>
               <el-form-item>
-                <el-button size="small" type="danger" @click="model.partners.splice(i, 1)">删除</el-button>
+                <el-button
+                  size="small"
+                  type="danger"
+                  @click="model.partners.splice(i, 1)"
+                  >删除</el-button
+                >
               </el-form-item>
             </el-col>
           </el-row>
@@ -162,70 +202,70 @@ export default {
       items: [],
       characters: [],
       model: {
-        name: '',
-        avatar: '',
+        name: "",
+        avatar: "",
         skills: [],
         partners: [],
         scores: {
           difficult: 0,
         },
       },
-    }
+    };
   },
   components: {},
   created() {
-    this.fetchItems()
-    this.fetchCategories()
-    this.fetchCharacters()
-    this.id && this.fetch()
+    this.fetchItems();
+    this.fetchCategories();
+    this.fetchCharacters();
+    this.id && this.fetch();
   },
   methods: {
     async save() {
-      let res
+      let res;
       if (this.id) {
-        res = await this.$http.put(`rest/characters/${this.id}`, this.model)
+        res = await this.$http.put(`rest/characters/${this.id}`, this.model);
       } else {
-        res = await this.$http.post('rest/characters', this.model)
+        res = await this.$http.post("rest/characters", this.model);
       }
-      console.log('save')
+      console.log("save");
       // const res = await this.$http.post("categories", this.model);
-      this.$router.push('/characters/list')
+      this.$router.push("/characters/list");
       this.$message({
-        type: 'success',
-        message: '保存成功',
-      })
+        type: "success",
+        message: "保存成功",
+      });
     },
     async fetch() {
-      const res = await this.$http.get(`rest/characters/${this.id}`)
+      const res = await this.$http.get(`rest/characters/${this.id}`);
       // this.model = res.data
-      this.model = Object.assign({}, this.model, res.data)
+      this.model = Object.assign({}, this.model, res.data);
     },
     async fetchCategories() {
-      const res = await this.$http.get(`rest/categories`)
-      console.log(res.data)
+      const res = await this.$http.get(`rest/categories`);
+      console.log(res.data);
       this.categories = res.data.filter(
-        (v) => v.parent && v.parent.name === '英雄'
-      )
+        (v) => v.parent && v.parent.name === "式神"
+      );
     },
     async fetchItems() {
-      const res = await this.$http.get(`rest/items`)
-      console.log(res.data)
-      this.items = res.data
+      const res = await this.$http.get(`rest/items`);
+      console.log(res.data);
+      this.items = res.data;
     },
     async fetchCharacters() {
-      const res = await this.$http.get(`rest/characters`)
-      this.characters = res.data
+      const res = await this.$http.get(`rest/characters`);
+      this.characters = res.data;
     },
     afterUpload(res) {
       // res 是 element 的on-success附带参数
       // 数据赋值会有问题，需要显式赋值
       // vue推荐用法
-      this.$set(this.model, 'avatar', res.url)
+      this.$set(this.model, "avatar", res.url);
       // 获取后台生成的url，赋值给model.icon
       // this.model.icon = res.url
     },
   },
-}
+};
 </script>
 
 <style scoped></style>

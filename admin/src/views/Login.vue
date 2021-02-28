@@ -27,23 +27,24 @@ export default {
   created() {},
   methods: {
     async login() {
-    //   console.log(this.model);
+      //   console.log(this.model);
       const res = await this.$http.post("login", this.model);
       // console.log(res.data);
-    // 存储token
-    localStorage.token = res.data.token
-    // sessionlStorage.token = res.data.token
-    this.$router.push('/')
-    this.$message({
-        type:'success',
-        message:'登录成功'
-    })
+      // 存储token
+      localStorage.token = res.data.token;
+      // sessionlStorage.token = res.data.token
+      this.$router.push("/");
+      this.$message({
+        type: "success",
+        message: "登录成功",
+      });
     },
   },
 };
 </script>
 
 <style scoped>
+
 .login_container {
   width: 25rem;
   margin: 8rem auto;
